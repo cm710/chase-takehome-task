@@ -9,9 +9,13 @@ public class Reservation {
         this.customer = customer;
         this.showing = showing;
         this.audienceCount = audienceCount;
+
+        if (audienceCount <= 0) {
+            throw new IllegalArgumentException("An audience of zero or less people is not allowed");
+        }
     }
 
     public double totalFee() {
-        return showing.getMovieFee() * audienceCount;
+        return showing.calculateTicketPrice() * audienceCount;
     }
 }

@@ -2,15 +2,27 @@ package com.jpmc.theater;
 
 import java.time.LocalDateTime;
 
+import java.util.Objects;
+
 public class Showing {
     private Movie movie;
-    private int sequenceOfTheDay;
+    private Theater theater;
+    /*
+     * sequenceOfTheDay should not exist as it could be inconsistent with the
+     * actual showing order. Instead, it should be calculated based on the
+     * container it occupies.
+     */
     private LocalDateTime showStartTime;
 
-    public Showing(Movie movie, int sequenceOfTheDay, LocalDateTime showStartTime) {
+    public Showing(Movie movie, Theater theater, LocalDateTime showStartTime) {
         this.movie = movie;
-        this.sequenceOfTheDay = sequenceOfTheDay;
+        this.theater = theater;
         this.showStartTime = showStartTime;
+        Theater.addShowingToSchedule(this);
+    }
+
+    public Theater getTheater() {
+        return theater;
     }
 
     public Movie getMovie() {
@@ -21,19 +33,21 @@ public class Showing {
         return showStartTime;
     }
 
-    public boolean isSequence(int sequence) {
-        return this.sequenceOfTheDay == sequence;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || o.getClass() != getClass()) {
+            return false;
+        }
+
+        Showing s = (Showing) o;
+        return Objects.equals(s.movie, this.movie) && Objects.equals(s.showStartTime, this.showStartTime);
     }
 
-    public double getMovieFee() {
-        return movie.getTicketPrice();
-    }
-
-    public int getSequenceOfTheDay() {
-        return sequenceOfTheDay;
-    }
-
-    private double calculateFee(int audienceCount) {
-        return movie.calculateTicketPrice(this) * audienceCount;
+    public double calculateTicketPrice() {
+        return theater.calculateTicketPrice(this);
     }
 }
