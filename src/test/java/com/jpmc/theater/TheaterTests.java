@@ -10,6 +10,15 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class TheaterTests {
+  /* The main functionality of theatre is to keep track of showings in the
+   * correct order - this is what testShowOrderning aims to do. It is also an
+   * interface for making reservations, so we try to account for the exception
+   * handling in te invalidReservation test. Finally, we test the print routines
+   * to check that they do not produce any unexpected behavior. As further
+   * functionality may be added, more tests may become necessary - e.g. keeping
+   * track of reservations. */
+
+
     // Add showings in random order and verify that they are sorted in the order
     // they appear.
     @Test

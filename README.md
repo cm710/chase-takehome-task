@@ -1,3 +1,14 @@
+# Notes
+
+I have made several improvements to the code, specifically making the relationship between showings, movies and theatres safer so that the the compile time routine and syntax will not allow a showing to belong to an invalid theater, or a movie to belong to an invalid showing. As a result, getting the show sequence is done in a safer maner and so is the discount calculation.
+
+I have discarded the `LocalDateProvider` singleton as its only function was to call the static `DateTime.now()` method. It may be useful if extended, but right now it is not - as a result I have excluded it from use.
+
+I have added relevant tests to the `Movie`, `Reservation` and `Theater` files, so that I can cover elements that have interactability between the classes - e.g. making discounts references information from the theater, showing and movie. This was the basis of deciding which tests to add. A possible improvement would be to install a fuzzer test framework and actively run various functions with random arguments, to test their reliability - however, I could not find a standard library that was easy to implement here.
+
+Lastly, I have made several improvements to handling invalid arguments for various methods.
+
+# ORIGINAL INSTRUCTIONS
 # Introduction
 
 This is a poorly written application, and we're expecting the candidate to greatly improve this code base.

@@ -10,6 +10,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ReservationTests {
+  /* The way the reservation object interacts with other modules is by
+   * triggering the discount mechanic. Discount tests are covered in the
+   * MovieTests.java test file, so we just test if the discount is being applied
+   * when making a new reservation. Also, we test for invalid audience values.
+   */
 
     @Test
     void totalFee() {

@@ -9,6 +9,12 @@ import java.time.LocalDateTime;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MovieTests {
+   /* The only module that interacts outside this class is the discount
+   * calculation. It interfaces with the showing and the theater objects in
+   * order to arrive at a final price. The title, description and running times
+   * are not interacting with any other modules, so no tests are required for
+   * now.*/
+
     @Test
     void testDiscounts() {
         Theater theater = new Theater(LocalDate.now());
